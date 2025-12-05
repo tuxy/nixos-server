@@ -1,14 +1,22 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.disko.url = "github:nix-community/disko";
-  inputs.copyparty.url = "github:9001/copyparty";
-  inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixarr.url = "github:rasmus-kirk/nixarr";
+    copyparty.url = "github:9001/copyparty";
+    agenix.url = "github:ryantm/agenix";
+  };
 
   outputs =
     {
       nixpkgs,
       copyparty,
       disko,
+      agenix,
+      nixarr,
       ...
     }:
     {
@@ -20,7 +28,8 @@
           modules = [
             disko.nixosModules.disko
             copyparty.nixosModules.default
-            ./modules/user
+            nixarr.nixosModules.default
+            agenix.nixosModules.default
             ./hosts/server01/configuration.nix
             ./hardware-configuration.nix
           ];
@@ -29,7 +38,6 @@
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko
-            ./modules/user
             ./hosts/server02/configuration.nix
             ./hardware-configuration.nix
           ];
