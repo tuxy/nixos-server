@@ -1,9 +1,19 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
-  age.secrets.wgconf.file = ../../secrets/wgconf.age;
+  age.secrets.wgconf.file = ../../secrets/wg.conf.age;
   age.identityPaths = [ "/root/.ssh/id_rsa" ];
 
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime
+    ];
+  };
+
   nixarr = {
+    enable = true;
+
     vpn = {
       enable = true;
       wgConf = config.age.secrets.wgconf.path;
@@ -15,6 +25,8 @@
     transmission = {
       enable = true;
       vpn.enable = true;
+      peerPort = 47283;
+      flood.enable = true;
     };
 
     bazarr.enable = true;

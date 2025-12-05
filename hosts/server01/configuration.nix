@@ -10,6 +10,7 @@
     ../../disko-config.nix
     ./file.nix
     ./media.nix
+    ./proxy.nix
   ];
 
   boot.loader.grub = {
