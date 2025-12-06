@@ -1,9 +1,19 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ../../modules/wireproxy/default.nix
+  ];
+
   age.secrets.wgconf.file = ../../secrets/wg.conf.age;
+  age.secrets.wgproxyconf.file = ../../secrets/wgproxy.conf.age;
   age.identityPaths = [ "/root/.ssh/id_rsa" ];
 
-  hardware.opengl = {
+  services.wireproxy = {
+    enable = true;
+    configPath = config.age.secrets.wgproxyconf.path;
+  };
+
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
@@ -27,6 +37,13 @@
       vpn.enable = true;
       peerPort = 47283;
       flood.enable = true;
+      extraSettings = {
+        rpc-authentication-required = "true";
+        rpc-username = "tuxy";
+	port-forwarding-enabled = "true";
+	ratio-limit = "5";
+	ratio-limit-enabled = "true";
+      };
     };
 
     bazarr.enable = true;

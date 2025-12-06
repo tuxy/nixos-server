@@ -3,4 +3,5 @@ let
 in
 {
   "wg.conf.age".publicKeys = [ root ];
+  "wgproxy.conf.age".publicKeys = [ root ];
 }
