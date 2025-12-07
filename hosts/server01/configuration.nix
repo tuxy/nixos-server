@@ -7,10 +7,10 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
+    ../../modules/copyparty
+    ../../modules/caddy
     ../../disko-config.nix
-    ./file.nix
     ./media.nix
-    ./proxy.nix
   ];
 
   age = {
