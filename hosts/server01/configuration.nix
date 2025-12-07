@@ -13,6 +13,22 @@
     ./proxy.nix
   ];
 
+  age = {
+    identityPaths = [ "/root/.ssh/id_rsa" ];
+    secrets = {
+      wgconf.file = ../../secrets/wg.conf.age;
+      wgproxyconf.file = ../../secrets/wgproxy.conf.age;
+    };
+  };
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-compute-runtime
+    ];
+  };
+
   boot.loader.grub = {
     enable = true;
     efiSupport = true;

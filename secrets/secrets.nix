@@ -4,4 +4,5 @@ in
 {
   "wg.conf.age".publicKeys = [ root ];
   "wgproxy.conf.age".publicKeys = [ root ];
+  "password.age".publicKeys = [ root ];
 }
