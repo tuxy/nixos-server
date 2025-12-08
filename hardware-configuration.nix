@@ -28,6 +28,7 @@
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/15f5ae76-4c75-4c71-bb60-160583dee517";
     fsType = "btrfs";
+    options = [ "compress=zstd:3" ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

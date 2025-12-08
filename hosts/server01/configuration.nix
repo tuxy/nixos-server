@@ -18,6 +18,7 @@
     secrets = {
       wgconf.file = ../../secrets/wg.conf.age;
       wgproxyconf.file = ../../secrets/wgproxy.conf.age;
+      password.file = ../../secrets/password.age;
     };
   };
 

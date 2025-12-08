@@ -1,13 +1,15 @@
 { config, ... }:
 {
   imports = [
-    ../../modules/wireproxy/default.nix
+    ../../modules/wireproxy
   ];
 
   services.wireproxy = {
     enable = true;
     configPath = config.age.secrets.wgproxyconf.path;
   };
+
+  services.flaresolverr.enable = true;
 
   nixarr = {
     enable = true;
@@ -37,6 +39,7 @@
     bazarr.enable = true;
     lidarr.enable = true;
     prowlarr.enable = true;
+    whisparr.enable = true;
     radarr.enable = true;
     readarr.enable = true;
     sonarr.enable = true;

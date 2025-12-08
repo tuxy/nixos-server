@@ -39,6 +39,10 @@
                 reverse_proxy 127.0.0.1:8989
         	tls internal
       '';
+      "whisparr.server01.tuxy.party".extraConfig = ''
+                reverse_proxy 127.0.0.1:6969
+        	tls internal
+      '';
       "jellyseerr.server01.tuxy.party".extraConfig = ''
                 reverse_proxy 127.0.0.1:5055
         	tls internal
