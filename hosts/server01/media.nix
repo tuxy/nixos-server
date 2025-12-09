@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/wireproxy
+    ../../modules/metatube
   ];
 
   services.wireproxy = {
@@ -10,6 +11,7 @@
   };
 
   services.flaresolverr.enable = true;
+  services.metatube-server.enable = true;
 
   nixarr = {
     enable = true;
