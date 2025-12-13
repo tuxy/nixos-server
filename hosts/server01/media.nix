@@ -3,6 +3,7 @@
   imports = [
     ../../modules/wireproxy
     ../../modules/metatube
+    ../../modules/jav-parser
   ];
 
   services.wireproxy = {
@@ -12,6 +13,7 @@
 
   services.flaresolverr.enable = true;
   services.metatube-server.enable = true;
+  services.jav-parser.enable = true;
 
   nixarr = {
     enable = true;
