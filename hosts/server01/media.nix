@@ -11,9 +11,14 @@
     configPath = config.age.secrets.wgproxyconf.path;
   };
 
+  services.jav-parser = {
+    enable = true;
+    sourcePath = "/data/media/torrents/jav";
+    destPath = "/data/media/library/jav";
+  };
+
   services.flaresolverr.enable = true;
   services.metatube-server.enable = true;
-  services.jav-parser.enable = true;
 
   nixarr = {
     enable = true;
