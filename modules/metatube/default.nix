@@ -18,6 +18,7 @@ in
     systemd.services.metatube-server = {
       description = "metatube-server";
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${metatube-server}/bin/metatube-server";

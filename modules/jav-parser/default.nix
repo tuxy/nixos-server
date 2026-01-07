@@ -34,6 +34,7 @@ in
     systemd.services.jav-parser = {
       description = "jav-parser";
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${jav-parser}/bin/jav-parser ${config.services.jav-parser.sourcePath} ${config.services.jav-parser.destPath} ${builtins.toString config.services.jav-parser.interval} ${builtins.toString config.services.jav-parser.minSize}";

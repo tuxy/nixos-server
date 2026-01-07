@@ -21,6 +21,7 @@ with lib;
     systemd.services.wireproxy = {
       description = "wireproxy";
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.wireproxy}/bin/wireproxy -c ${config.services.wireproxy.configPath}";
