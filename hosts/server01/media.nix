@@ -17,6 +17,9 @@
     destPath = "/data/media/library/jav";
   };
 
+  services.avahi.enable = true;
+  networking.firewall.allowedUDPPorts = [ 1900 ];
+
   services.flaresolverr.enable = true;
   services.metatube-server.enable = true;
 

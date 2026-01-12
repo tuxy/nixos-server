@@ -9,6 +9,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../modules/copyparty
     ../../modules/caddy
+    ../../modules/syncthing
     ../../disko-config.nix
     ./media.nix
   ];
@@ -42,6 +43,9 @@
   environment.systemPackages = with pkgs; [
     curl
     gitMinimal
+    rsync
+    screen
+    tmux
     wget
     neovim
     htop

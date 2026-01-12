@@ -52,6 +52,10 @@
                 reverse_proxy 127.0.0.1:5055
         	tls internal
       '';
+      "sync.server01.tuxy.party".extraConfig = ''
+      		reverse_proxy 127.0.0.1:8384
+		tls internal
+      '';
     };
   };
 }
