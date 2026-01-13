@@ -6,13 +6,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "jav-parser";
-  version = "0.1.0";
+  version = "0.1.1";
 
   src = fetchFromGitHub {
     owner = "tuxy";
     repo = "jav-parser";
-    rev = "f68e6ba2ff5fabcfbd581af99586145212a3c25d";
-    hash = "sha256-xQUhnFSL+pLntfuY7eKprmQkIz2OMwFU8j8A9ia8tf4=";
+    rev = "729bc0cbcee87557e5f76cc86d9cbcc304baae52";
+    hash = "sha256-kyFfvt4wDvj6j+/eQgeXkLV9+oR2lW4VC2E3OSfE0AE=";
   };
 
   cargoHash = "sha256-Mt3A3eGOW+5dw9auqiz4KB64yW5zXMHbd/5xk/hi2H4=";

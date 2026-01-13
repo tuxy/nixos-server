@@ -53,7 +53,9 @@
         	tls internal
       '';
       "sync.server01.tuxy.party".extraConfig = ''
-      		reverse_proxy 127.0.0.1:8384
+      		reverse_proxy 127.0.0.1:8384 {
+			header_up Host {http.reverse_proxy.upstream.hostport}
+		}
 		tls internal
       '';
     };
