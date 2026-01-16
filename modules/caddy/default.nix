@@ -8,9 +8,12 @@
       hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
     };
     virtualHosts = {
-      "jellyfin.server01.tuxy.party".extraConfig = ''
-      		reverse_proxy 127.0.0.1:8096
-		tls internal
+      "https://jellyfin.server01.tuxy.party".extraConfig = ''
+              	reverse_proxy 127.0.0.1:8096
+        	tls internal
+      '';
+      "http://jellyfin.server01.tuxy.party".extraConfig = ''
+        	reverse_proxy 127.0.0.1:8096
       '';
       "files.server01.tuxy.party".extraConfig = ''
                 reverse_proxy 127.0.0.1:3923
@@ -52,11 +55,18 @@
                 reverse_proxy 127.0.0.1:5055
         	tls internal
       '';
+      "cloud.server02.tuxy.party".extraConfig = ''
+                reverse_proxy 127.0.0.1:8111 {
+        	    header_up Host {http.reverse_proxy.upstream.hostport}
+                    header_up X-Forwarded-Host {host}
+        	}
+                tls internal
+      '';
       "sync.server01.tuxy.party".extraConfig = ''
-      		reverse_proxy 127.0.0.1:8384 {
-			header_up Host {http.reverse_proxy.upstream.hostport}
-		}
-		tls internal
+              	reverse_proxy 127.0.0.1:8384 {
+        	    header_up Host {http.reverse_proxy.upstream.hostport}
+        	}
+        	tls internal
       '';
     };
   };

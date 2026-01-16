@@ -31,15 +31,16 @@
             nixarr.nixosModules.default
             agenix.nixosModules.default
             ./hosts/server01/configuration.nix
-            ./hardware-configuration.nix
+            ./hosts/server01/hardware-configuration.nix
           ];
         };
         server02 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko
+            agenix.nixosModules.default
             ./hosts/server02/configuration.nix
-            ./hardware-configuration.nix
+            ./hosts/server02/hardware-configuration.nix
           ];
         };
       };

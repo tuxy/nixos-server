@@ -1,25 +1,27 @@
 {
   modulesPath,
   pkgs,
+  config,
   ...
 }:
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../../modules/copyparty
-    ../../modules/caddy
-    ../../modules/syncthing
     ../../disko-config.nix
-    ./media.nix
+    ../../modules/nextcloud
+    ../../modules/caddy
   ];
 
   age = {
     identityPaths = [ "/root/.ssh/id_rsa" ];
     secrets = {
-      wgconf.file = ../../secrets/wg.conf.age;
-      wgproxyconf.file = ../../secrets/wgproxy.conf.age;
-      password.file = ../../secrets/password.age;
+      nextcloud-password = {
+        file = ../../secrets/nextcloud-password.age;
+        mode = "444";
+        owner = config.users.users.nextcloud.name;
+        group = config.users.users.nextcloud.group;
+      };
     };
   };
 
@@ -64,6 +66,6 @@
     "flakes"
   ];
 
-  networking.hostName = "server01";
+  networking.hostName = "server02";
   system.stateVersion = "25.11";
 }
