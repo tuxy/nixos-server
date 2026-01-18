@@ -1,0 +1,16 @@
+name: "nginx-proxy-manager"
+
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    environment:
+      TZ: "Australia/Brisbane"
+    network_mode: host
+    volumes:
+      - data:/data
+      - letsencrypt:/etc/letsencrypt
+
+volumes:
+  data:
+  letsencrypt:

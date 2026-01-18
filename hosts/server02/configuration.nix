@@ -8,10 +8,17 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../../disko-config.nix
     ../../modules/nextcloud
-    ../../modules/caddy
+    ../../modules/nginx
+    ../../modules/homepage
+    ../../modules/telemetry
+    ./disko-config.nix
   ];
+
+  telemetry = {
+    enableGrafana = true;
+    host = "server02.tuxy.party";
+  };
 
   age = {
     identityPaths = [ "/root/.ssh/id_rsa" ];
@@ -22,8 +29,19 @@
         owner = config.users.users.nextcloud.name;
         group = config.users.users.nextcloud.group;
       };
+      password.file = ../../secrets/password.age;
+      tailscale-env.file = ../../secrets/tailscale-env.age;
     };
   };
+
+  system.activationScripts."passwords" = ''
+    export SECRET=$(cat ${config.age.secrets.password.path})
+    export NEXTCLOUD_SECRET=$(cat "${config.age.secrets.nextcloud-password.path}")
+    configFile=/etc/homepage-dashboard/services.yaml
+    ${pkgs.gnused}/bin/sed -i "s#proxy_password#$SECRET#" "$configFile"
+    ${pkgs.gnused}/bin/sed -i "s#grafana_password#$SECRET#" "$configFile"
+    ${pkgs.gnused}/bin/sed -i "s#nextcloud_password#$NEXTCLOUD_SECRET#" "$configFile"
+  '';
 
   hardware.graphics = {
     enable = true;

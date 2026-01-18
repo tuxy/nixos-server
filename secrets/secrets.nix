@@ -10,4 +10,8 @@ in
     root
     tuxy
   ];
+  "tailscale-env.age".publicKeys = [
+    root
+    tuxy
+  ];
 }

@@ -8,11 +8,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../modules/copyparty
-    ../../modules/caddy
+    ../../modules/nginx
     ../../modules/syncthing
-    ../../disko-config.nix
+    ../../modules/telemetry
+    ./disko-config.nix
     ./media.nix
   ];
+
+  telemetry.enableGrafana = false;
 
   age = {
     identityPaths = [ "/root/.ssh/id_rsa" ];
@@ -20,6 +23,7 @@
       wgconf.file = ../../secrets/wg.conf.age;
       wgproxyconf.file = ../../secrets/wgproxy.conf.age;
       password.file = ../../secrets/password.age;
+      tailscale-env.file = ../../secrets/tailscale-env.age;
     };
   };
 

@@ -1,0 +1,144 @@
+{
+	skip_install_trust
+	acme_dns cloudflare ...
+
+	log {
+		level ERROR
+	}
+}
+
+*.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-*.server01.tuxy.party.log
+	}
+}
+
+bazarr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-bazarr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:6767
+	tls internal
+}
+
+cloud.server02.tuxy.party {
+	log {
+		output file /var/log/caddy/access-cloud.server02.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8111 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+		header_up X-Forwarded-Host {host}
+	}
+	tls internal
+}
+
+files.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-files.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:3923
+	tls internal
+}
+
+http://jellyfin.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-http:__jellyfin.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8096
+}
+
+https://jellyfin.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-https:__jellyfin.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8096
+}
+
+jellyseerr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-jellyseerr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:5055
+	tls internal
+}
+
+lidarr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-lidarr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8686
+	tls {
+		dns cloudflare ... 
+	}
+}
+
+prowlarr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-prowlarr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:9696
+	tls internal
+}
+
+radarr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-radarr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:7878
+}
+
+readarr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-readarr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8787
+	tls internal
+}
+
+sonarr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-sonarr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8989
+	tls internal
+}
+
+sync.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-sync.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:8384 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+	}
+	tls internal
+}
+
+torrent.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-torrent.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:9091
+	tls internal
+}
+
+whisparr.server01.tuxy.party {
+	log {
+		output file /var/log/caddy/access-whisparr.server01.tuxy.party.log
+	}
+
+	reverse_proxy 127.0.0.1:6969
+	tls internal
+}
