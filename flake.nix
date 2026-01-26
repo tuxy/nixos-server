@@ -12,29 +12,33 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       copyparty,
       disko,
       agenix,
       nixarr,
       ...
-    }:
+    }@inputs:
     {
       # Use this for all other targets
       # nixos-anywhere --flake .#{server01,server02} --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
       nixosConfigurations = {
         server01 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko
             copyparty.nixosModules.default
             nixarr.nixosModules.default
             agenix.nixosModules.default
+
             ./hosts/server01/configuration.nix
             ./hosts/server01/hardware-configuration.nix
           ];
         };
         server02 = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko

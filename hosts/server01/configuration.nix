@@ -68,6 +68,8 @@
     "flakes"
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   networking.hostName = "server01";
   system.stateVersion = "25.11";
 }
