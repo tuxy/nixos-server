@@ -19,7 +19,7 @@
       server = {
         http_addr = "127.0.0.1";
         http_port = 3003;
-        domain = "graph.server02.tuxy.party";
+        domain = "graph.tuxy.party";
       };
     };
   };
@@ -33,8 +33,6 @@
         static_configs = [
           {
             targets = [
-              "127.0.0.1:${toString config.services.prometheus.exporters.tailscale.port}"
-              "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}"
               "127.0.0.1:${toString config.services.prometheus.exporters.systemd.port}"
               "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
             ];

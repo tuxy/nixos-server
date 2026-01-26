@@ -1,5 +1,7 @@
-{ ... }:{
+{ ... }:
+{
   services.homepage-dashboard.settings = {
+    target = "_self";
     quicklaunch = {
       provider = "google";
       searchDescriptions = false;

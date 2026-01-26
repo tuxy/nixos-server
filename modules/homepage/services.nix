@@ -16,11 +16,11 @@ in
         {
           "Nextcloud" = {
             icon = "nextcloud.png";
-            href = "https://cloud.server02.tuxy.party";
+            href = "https://cloud.tuxy.party";
             description = "Self-hosted personal cloud";
             widget = {
               type = "nextcloud";
-              url = "https://cloud.server02.tuxy.party";
+              url = "https://cloud.tuxy.party";
               key = "nextcloud_password";
             };
           };
@@ -169,12 +169,12 @@ in
         {
           "Grafana" = {
             icon = "grafana.png";
-            href = "https://graph.server02.tuxy.party";
+            href = "https://graph.tuxy.party";
             description = "Excessive graphical monitoring software";
             widget = {
               type = "grafana";
               version = 2;
-              url = "https://graph.server02.tuxy.party";
+              url = "https://graph.tuxy.party";
               username = "admin";
               password = "grafana_password";
             };

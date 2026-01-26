@@ -4,10 +4,11 @@
     ./services.nix
     ./widgets.nix
     ./settings.nix
+    ./bookmarks.nix
   ];
 
   services.homepage-dashboard = {
     enable = true;
-    allowedHosts = "home.server02.tuxy.party";
+    allowedHosts = "home.tuxy.party";
   };
 }
