@@ -8,7 +8,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../modules/copyparty
-    ../../modules/nginx
+    ../../modules/caddy-01
     ../../modules/syncthing
     ../../modules/telemetry
     ./disko-config.nix
@@ -24,6 +24,7 @@
       wgproxyconf.file = ../../secrets/wgproxy.conf.age;
       password.file = ../../secrets/password.age;
       tailscale-env.file = ../../secrets/tailscale-env.age;
+      cloudflare.file = ../../secrets/cloudflare.age;
     };
   };
 

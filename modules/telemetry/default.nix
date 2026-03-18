@@ -21,6 +21,7 @@
         http_port = 3003;
         domain = "graph.tuxy.party";
       };
+      security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
     };
   };
 

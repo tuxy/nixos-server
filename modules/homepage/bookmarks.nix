@@ -26,11 +26,19 @@
       ];
     }
     {
-      "News" = [
+      "University" = [
         {
-          "Phoronix" = [
+          "Homepage" = [
             {
-              href = "https://phoronix.com";
+              href = "https://my.unimelb.edu.au";
+            }
+          ];
+
+        }
+        {
+          "LMS" = [
+            {
+              href = "https://lms.unimelb.edu.au/canvas";
             }
           ];
         }

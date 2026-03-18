@@ -1,0 +1,24 @@
+{
+	skip_install_trust
+	acme_dns cloudflare {env.CF_API_TOKEN} 
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+cloud.tuxy.party {
+	reverse_proxy 127.0.0.1:8111 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+		header_up X-Forwarded-Host {host}
+	}
+}
+
+home.tuxy.party {
+	reverse_proxy 127.0.0.1:8082
+}
+
+graph.tuxy.party {
+	reverse_proxy 127.0.0.1:3003
+}
+
+code.tuxy.party {
+	reverse_proxy 127.0.0.1:4444
+}

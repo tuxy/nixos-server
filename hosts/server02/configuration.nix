@@ -9,9 +9,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../modules/nextcloud
-    ../../modules/nginx
+    ../../modules/caddy-02
     ../../modules/homepage
     ../../modules/telemetry
+    ../../modules/code
     ./disko-config.nix
   ];
 
@@ -31,6 +32,7 @@
       };
       password.file = ../../secrets/password.age;
       tailscale-env.file = ../../secrets/tailscale-env.age;
+      cloudflare.file = ../../secrets/cloudflare.age;
     };
   };
 

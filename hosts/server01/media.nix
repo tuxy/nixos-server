@@ -59,21 +59,22 @@
   };
 
   # Necessary fix for bazarr
-  systemd.services.radarr = {
-    serviceConfig = {
-      UMask = "0002";
-    };
-  };
+  # HAS BEEN FIXED
+  #systemd.services.radarr = {
+  #  serviceConfig = {
+  #    UMask = "0002";
+  #  };
+  #};
 
-  systemd.services.sonarr = {
-    serviceConfig = {
-      UMask = "0002";
-    };
-  };
+  #systemd.services.sonarr = {
+  #  serviceConfig = {
+  #    UMask = "0002";
+  #  };
+  #};
 
-  systemd.services.bazarr = {
-    serviceConfig = {
-      UMask = "0002";
-    };
-  };
+  #systemd.services.bazarr = {
+  #  serviceConfig = {
+  #    UMask = "0002";
+  #  };
+  #};
 }

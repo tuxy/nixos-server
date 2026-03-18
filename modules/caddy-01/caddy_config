@@ -1,0 +1,62 @@
+{
+	skip_install_trust
+	acme_dns cloudflare {env.CF_API_TOKEN} 
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+bazarr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:6767
+}
+
+cloud.tuxy.party {
+	reverse_proxy 127.0.0.1:8111 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+		header_up X-Forwarded-Host {host}
+	}
+}
+
+files.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:3923
+}
+
+jellyfin.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8096
+}
+
+jellyseerr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:5055
+}
+
+lidarr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8686
+}
+
+prowlarr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:9696
+}
+
+radarr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:7878
+}
+
+readarr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8787
+}
+
+sonarr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8989
+}
+
+sync.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8384 {
+		header_up Host {http.reverse_proxy.upstream.hostport}
+	}
+}
+
+torrent.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:9091
+}
+
+whisparr.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:6969
+}

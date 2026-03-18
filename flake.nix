@@ -8,6 +8,7 @@
     nixarr.url = "github:rasmus-kirk/nixarr";
     copyparty.url = "github:9001/copyparty";
     agenix.url = "github:ryantm/agenix";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs =
@@ -18,6 +19,7 @@
       disko,
       agenix,
       nixarr,
+      vscode-server,
       ...
     }@inputs:
     {
@@ -43,6 +45,7 @@
           modules = [
             disko.nixosModules.disko
             agenix.nixosModules.default
+            vscode-server.nixosModules.default
             ./hosts/server02/configuration.nix
             ./hosts/server02/hardware-configuration.nix
           ];

@@ -1,6 +1,0 @@
-files.server01.tuxy.party {
-	log {
-		output file /var/log/caddy/access-files.server01.tuxy.party.log
-	}
-	reverse_proxy 127.0.0.1:3923
-}
