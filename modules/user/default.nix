@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   #users.users.tuxy = {
   #  createHome = true;
   #  extraGroups = [

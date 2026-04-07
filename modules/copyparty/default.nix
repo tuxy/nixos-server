@@ -1,6 +1,9 @@
-{ pkgs, config, ... }:
 {
-  environment.systemPackages = [ pkgs.copyparty ];
+  pkgs,
+  config,
+  ...
+}: {
+  environment.systemPackages = [pkgs.copyparty];
   services.copyparty = {
     enable = true;
     user = "root";
@@ -14,7 +17,7 @@
 
     volumes."/" = {
       path = "/data";
-      access.rw = [ "tuxy" ];
+      access.rw = ["tuxy"];
     };
   };
 }

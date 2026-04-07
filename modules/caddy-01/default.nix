@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     nss
     nssTools

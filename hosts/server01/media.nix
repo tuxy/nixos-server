@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   imports = [
     ../../modules/wireproxy
     ../../modules/metatube
@@ -18,10 +17,17 @@
   };
 
   services.avahi.enable = true;
-  networking.firewall.allowedUDPPorts = [ 1900 ];
+  networking.firewall.allowedUDPPorts = [1900];
 
   services.flaresolverr.enable = true;
   services.metatube-server.enable = true;
+
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "0 0 * * *	root	find /data/media/torrents >> /data/media/.file-lists/list-$(date -u +%F).txt"
+    ];
+  };
 
   nixarr = {
     enable = true;
@@ -57,24 +63,4 @@
     sonarr.enable = true;
     jellyseerr.enable = true;
   };
-
-  # Necessary fix for bazarr
-  # HAS BEEN FIXED
-  #systemd.services.radarr = {
-  #  serviceConfig = {
-  #    UMask = "0002";
-  #  };
-  #};
-
-  #systemd.services.sonarr = {
-  #  serviceConfig = {
-  #    UMask = "0002";
-  #  };
-  #};
-
-  #systemd.services.bazarr = {
-  #  serviceConfig = {
-  #    UMask = "0002";
-  #  };
-  #};
 }

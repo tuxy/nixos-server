@@ -2,8 +2,7 @@
   modulesPath,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -11,6 +10,9 @@
     ../../modules/caddy-01
     ../../modules/syncthing
     ../../modules/telemetry
+    ../../modules/immich
+    ../../modules/cloudflare
+    ../../modules/backup
     ./disko-config.nix
     ./media.nix
   ];
@@ -18,13 +20,15 @@
   telemetry.enableGrafana = false;
 
   age = {
-    identityPaths = [ "/root/.ssh/id_rsa" ];
+    identityPaths = ["/root/.ssh/id_rsa"];
     secrets = {
       wgconf.file = ../../secrets/wg.conf.age;
       wgproxyconf.file = ../../secrets/wgproxy.conf.age;
       password.file = ../../secrets/password.age;
       tailscale-env.file = ../../secrets/tailscale-env.age;
       cloudflare.file = ../../secrets/cloudflare.age;
+      immich-proxy.file = ../../secrets/immich-proxy.age;
+      restic-server01.file = ../../secrets/restic-server01.age;
     };
   };
 

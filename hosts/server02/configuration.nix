@@ -3,8 +3,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -12,6 +11,7 @@
     ../../modules/caddy-02
     ../../modules/homepage
     ../../modules/telemetry
+    ../../modules/pocket-tts
     ../../modules/code
     ./disko-config.nix
   ];
@@ -22,7 +22,7 @@
   };
 
   age = {
-    identityPaths = [ "/root/.ssh/id_rsa" ];
+    identityPaths = ["/root/.ssh/id_rsa"];
     secrets = {
       nextcloud-password = {
         file = ../../secrets/nextcloud-password.age;

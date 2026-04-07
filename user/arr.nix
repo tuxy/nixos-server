@@ -1,5 +1,4 @@
-{ }:
-let
+{}: let
   arr = {
     radarr.key = "048381605fba45aa8f341aab6b0d427b";
     sonarr.key = "97bc892172b44b24b284b21421f6a4dd";
@@ -8,7 +7,6 @@ let
     lidarr.key = "422db4d115a0470d8ea129a35adc9365";
     jellyseerr.key = "MTc2NDkzNTI1ODIwMDJhZDJhMTA1LWU1ZDgtNGYyNi05NDI5LWQ2MTdjZmE2Y2ZlYg==";
   };
-in
-{
+in {
   inherit arr;
 }

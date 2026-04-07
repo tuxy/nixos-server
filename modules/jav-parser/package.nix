@@ -3,7 +3,6 @@
   fetchFromGitHub,
   lib,
 }:
-
 rustPlatform.buildRustPackage {
   pname = "jav-parser";
   version = "0.1.1";

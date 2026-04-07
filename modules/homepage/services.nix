@@ -1,11 +1,9 @@
-{ ... }:
-let
-  user = import ../../user/arr.nix { };
-in
-{
+{...}: let
+  user = import ../../user/arr.nix {};
+in {
   services.homepage-dashboard.services = [
     {
-      "Cloud & Sync" = [
+      "General" = [
         {
           "Syncthing" = {
             icon = "syncthing.png";
@@ -23,6 +21,13 @@ in
               url = "https://cloud.tuxy.party";
               key = "nextcloud_password";
             };
+          };
+        }
+        {
+          "VSCode" = {
+            icon = "vscode.png";
+            href = "https://code.tuxy.party";
+            description = "OpenVSCode server with Rust, C and more";
           };
         }
       ];

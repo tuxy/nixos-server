@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.collabora-online = {
     enable = true;
     port = 9980;
@@ -11,12 +10,12 @@
 
       net = {
         listen = "loopback";
-        post_allow.host = [ "::1" ];
+        post_allow.host = ["::1"];
       };
 
       storage.wopi = {
         "@allow" = true;
-        host = [ "cloud.tuxy.party" ];
+        host = ["cloud.tuxy.party"];
       };
 
       # Set FQDN of server

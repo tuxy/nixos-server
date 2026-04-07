@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.homepage-dashboard.settings = {
     target = "_self";
     quicklaunch = {

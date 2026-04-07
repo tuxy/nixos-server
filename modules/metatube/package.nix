@@ -3,7 +3,6 @@
   lib,
   fetchzip,
 }:
-
 stdenv.mkDerivation rec {
   pname = "metatube-server";
   version = "1.3.1";

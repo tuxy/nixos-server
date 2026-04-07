@@ -2,9 +2,7 @@
   config,
   lib,
   ...
-}:
-{
-
+}: {
   options.telemetry.enableGrafana = lib.mkOption {
     type = lib.types.bool;
   };
@@ -56,7 +54,6 @@
         ];
         port = 9002;
       };
-
     };
   };
 }

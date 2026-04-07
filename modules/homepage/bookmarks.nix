@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.homepage-dashboard.bookmarks = [
     {
       "Develop" = [
@@ -33,7 +32,6 @@
               href = "https://my.unimelb.edu.au";
             }
           ];
-
         }
         {
           "LMS" = [

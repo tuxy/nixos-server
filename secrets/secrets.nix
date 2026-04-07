@@ -1,11 +1,10 @@
 let
   root = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDnJtXNZxPonY6RnxdwroXfH5MTthui+x2hfGtzHrb7DCOyo53wriHMbPGf8E9cWGgQn1hGlqKJeZJAG+ifNLhgSEM+H7CiG3W2RrFaI4n4DOmJUWa1um5LM95LWQP7oGugHJlTHYvXCW+SaVdK1B4jqjWRrDWA19Elhcz/YFJDeRuX4uFARIzxh5CWqT89YrhhRE2S0O4nKHTSL7IbGG8WWq0RKHg9UhoJA6bfuufvAquUrJaWOTDJPAT7a4mzbSd93ItWAKZT5BTCsIscJ7FsOPbF82EfNAcj6ORYMYELENhnUtJCW1QpGW5g5AE7erovo2wB0yGQ86KwYJ7e/UXunm8w7Ku6N4SNsoFS+hbB69DNH+tRy3XVmVhtmZKDvzwtQPg/5WmTLojx2kpnSHt0MQTRhlJSTvv5uFSWdGOxsqIXDzvp7TBbgM6nagYdeYj9/VMG0gw7nhWjhe2y4u/kY/hf4SQsKUU3c6twLIfLHmQae+nXlaViRVootNTxXk0=";
   tuxy = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLfc3ejrJs5DVz75LIbOMe+HgUQuKdwWDRWL412q60TO7OW7G7seip0ubdwUKfMuB6VryVn8JcI/y7bfjhMKcgR4RqP3ryVlXN6bQQNyaZWyKAtRBz6Wx2P0xmlB7H2QGTSIbGTs3DRZ6HJ7u0YKbX66PTc4kKyfqFesBq7lmcl7LGRhuF2GIawjLn7BOJJwFYB/rjDTUErDkrMPlcIX2iXVw7RO/YGwfS+5V7YYk7gLsrBfG7QPSyMGRpXkGCOU7ZVcqBq6SH+mtUdjwEx657dYgKq4vu1fE01Qid6W5vvSIcnlOGUWQjxsHR0IlpVnY25aZgsVzrTpFV0uQQz3KGlFDoGmBIB7jrt6EqR5FNQ9R3X76J72Q5eIN2vzyOV54vMrGWf5xsAK5mTEmkeS/W9c71Weyda/8NbM/aEDvCkkEXRmx6iM4jh6A6ZrXz1Jv+Cnnc3xLKAG24ZyAYBSIV8sEQiDWxJVEvhhmDlZvD2pHitfZdC9oVN+9jUFQ3Zek= tuxy@deskputer";
-in
-{
-  "wg.conf.age".publicKeys = [ root ];
-  "wgproxy.conf.age".publicKeys = [ root ];
-  "password.age".publicKeys = [ root ];
+in {
+  "wg.conf.age".publicKeys = [root];
+  "wgproxy.conf.age".publicKeys = [root];
+  "password.age".publicKeys = [root];
   "cloudflare.age".publicKeys = [
     root
     tuxy
@@ -15,6 +14,14 @@ in
     tuxy
   ];
   "tailscale-env.age".publicKeys = [
+    root
+    tuxy
+  ];
+  "immich-proxy.age".publicKeys = [
+    root
+    tuxy
+  ];
+  "restic-server01.age".publicKeys = [
     root
     tuxy
   ];

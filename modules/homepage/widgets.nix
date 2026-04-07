@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services.homepage-dashboard.widgets = [
     {
       resources = {

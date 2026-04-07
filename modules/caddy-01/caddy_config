@@ -60,3 +60,7 @@ torrent.server01.tuxy.party {
 whisparr.server01.tuxy.party {
 	reverse_proxy 127.0.0.1:6969
 }
+
+immich.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:2283
+}

@@ -4,12 +4,9 @@
   pkgs,
   ...
 }:
-
-with lib;
-let
-  metatube-server = pkgs.callPackage ./package.nix { };
-in
-{
+with lib; let
+  metatube-server = pkgs.callPackage ./package.nix {};
+in {
   options.services.metatube-server = {
     enable = mkEnableOption "Enable metatube-server";
   };
@@ -17,9 +14,9 @@ in
   config = mkIf config.services.metatube-server.enable {
     systemd.services.metatube-server = {
       description = "metatube-server";
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         ExecStart = "${metatube-server}/bin/metatube-server";
         User = "root";

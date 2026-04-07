@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./services.nix
     ./widgets.nix

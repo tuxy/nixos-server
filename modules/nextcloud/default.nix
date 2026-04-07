@@ -1,8 +1,11 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   # imports = [ ./collabora.nix ];
 
-  users.groups.nextcloud = { };
+  users.groups.nextcloud = {};
   users.users.nextcloud = {
     isSystemUser = true;
     group = "nextcloud";
@@ -10,7 +13,7 @@
 
   services.nginx = {
     defaultHTTPListenPort = 8111;
-    defaultListenAddresses = [ "127.0.0.1" ];
+    defaultListenAddresses = ["127.0.0.1"];
   };
 
   services.nextcloud = {
@@ -21,12 +24,13 @@
     hostName = "tuxy.party";
     appstoreEnable = true;
     extraApps = {
-      inherit (config.services.nextcloud.package.packages.apps)
+      inherit
+        (config.services.nextcloud.package.packages.apps)
         news
         contacts
         calendar
         tasks
-	richdocuments
+        richdocuments
         ;
     };
     extraAppsEnable = true;
@@ -36,8 +40,8 @@
       dbtype = "sqlite";
     };
     settings = {
-      trusted_domains = [ "cloud.tuxy.party" ];
-      trusted_proxies = [ "127.0.0.1" ];
+      trusted_domains = ["cloud.tuxy.party"];
+      trusted_proxies = ["127.0.0.1"];
     };
   };
 }
