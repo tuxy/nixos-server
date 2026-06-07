@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  # imports = [ ./collabora.nix ];
+  imports = [ ./collabora.nix ]; 
 
   users.groups.nextcloud = {};
   users.users.nextcloud = {

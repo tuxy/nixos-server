@@ -2,6 +2,11 @@
 	skip_install_trust
 	acme_dns cloudflare {env.CF_API_TOKEN} 
 	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+        servers {
+          protocol {
+          experimental_http3 off
+        }
+  }
 }
 
 bazarr.server01.tuxy.party {
@@ -67,4 +72,8 @@ whisparr.server01.tuxy.party {
 
 immich.server01.tuxy.party {
 	reverse_proxy 127.0.0.1:2283
+}
+
+ntfy.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8182
 }

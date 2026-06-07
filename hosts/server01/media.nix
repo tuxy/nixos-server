@@ -1,4 +1,5 @@
-{config, ...}: {
+{ pkgs, config, ... }:
+{
   imports = [
     ../../modules/wireproxy
     ../../modules/metatube
@@ -16,8 +17,23 @@
     destPath = "/data/media/library/jav";
   };
 
+  services.jellyfin = {
+    enable = true;
+    group = "media";
+    cacheDir = "/data/media/.state/nixarr/jellyfin/cache";
+    logDir = "/data/media/.state/nixarr/jellyfin/log";
+    configDir = "/data/media/.state/nixarr/jellyfin/config";
+    dataDir = "/data/media/.state/nixarr/jellyfin/data";
+  };
+
+  environment.systemPackages = [
+    pkgs.jellyfin
+    pkgs.jellyfin-web
+    pkgs.jellyfin-ffmpeg
+  ];
+
   services.avahi.enable = true;
-  networking.firewall.allowedUDPPorts = [1900];
+  networking.firewall.allowedUDPPorts = [ 1900 ];
 
   services.flaresolverr.enable = true;
   services.metatube-server.enable = true;
@@ -25,7 +41,7 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "0 0 * * *	root	find /data/media/torrents >> /data/media/.file-lists/list-$(date -u +%F).txt"
+      "0 0 * * *	root	'find /data/media/torrents >> /data/media/.file-lists/list-$(date -u +%F).txt'"
     ];
   };
 
@@ -39,7 +55,7 @@
     mediaDir = "/data/media";
     stateDir = "/data/media/.state/nixarr";
 
-    jellyfin.enable = true;
+    # jellyfin.enable = true;
     transmission = {
       enable = true;
       vpn.enable = true;
@@ -57,10 +73,12 @@
     qbittorrent = {
       enable = true;
       vpn.enable = true;
-      torrentingPort = 51234;
+      peerPort = 51234;
       qui.enable = true;
-      settings = {
-        LegalNotice = { Accepted = true; };
+      extraConfig = {
+        LegalNotice = {
+          Accepted = true;
+        };
         Preferences = {
           WebUI = {
             Username = "tuxy";
@@ -75,7 +93,6 @@
     prowlarr.enable = true;
     whisparr.enable = true;
     radarr.enable = true;
-    readarr.enable = true;
     sonarr.enable = true;
     jellyseerr.enable = true;
   };

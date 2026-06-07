@@ -2,7 +2,8 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -13,6 +14,7 @@
     ../../modules/immich
     ../../modules/cloudflare
     ../../modules/backup
+    ../../modules/ntfy
     ./disko-config.nix
     ./media.nix
   ];
@@ -20,7 +22,7 @@
   telemetry.enableGrafana = false;
 
   age = {
-    identityPaths = ["/root/.ssh/id_rsa"];
+    identityPaths = [ "/root/.ssh/id_rsa" ];
     secrets = {
       wgconf.file = ../../secrets/wg.conf.age;
       wgproxyconf.file = ../../secrets/wgproxy.conf.age;

@@ -11,10 +11,11 @@
     ../../modules/caddy-02
     ../../modules/homepage
     ../../modules/telemetry
-    ../../modules/pocket-tts
     ../../modules/code
     ./disko-config.nix
   ];
+
+  networking.enableIPv6 = false;
 
   telemetry = {
     enableGrafana = true;
@@ -24,12 +25,7 @@
   age = {
     identityPaths = ["/root/.ssh/id_rsa"];
     secrets = {
-      nextcloud-password = {
-        file = ../../secrets/nextcloud-password.age;
-        mode = "444";
-        owner = config.users.users.nextcloud.name;
-        group = config.users.users.nextcloud.group;
-      };
+      nextcloud-password.file = ../../secrets/nextcloud-password.age;
       password.file = ../../secrets/password.age;
       tailscale-env.file = ../../secrets/tailscale-env.age;
       cloudflare.file = ../../secrets/cloudflare.age;

@@ -1,25 +1,12 @@
-{...}: {
-  services.collabora-online = {
-    enable = true;
-    port = 9980;
-    settings = {
-      ssl = {
-        enable = false;
-        termination = true;
+{ ... }: {
+    virtualisation.oci-containers.containers.collabora = {
+      image = "docker.io/collabora/code";
+      ports = [ "127.0.0.1:9980:9980" ];
+      autoStart = true;
+      environment = {
+        aliasgroup1 = "https://cloud.tuxy.party";
+        aliasgroup2 = "https://collabora.server02.tuxy.party";
+        extra_params = "--o:ssl.enable=false --o:storage.wopi.host[nextcloud]=true --o:net.proto=IPv4";
       };
-
-      net = {
-        listen = "loopback";
-        post_allow.host = ["::1"];
-      };
-
-      storage.wopi = {
-        "@allow" = true;
-        host = ["cloud.tuxy.party"];
-      };
-
-      # Set FQDN of server
-      server_name = "collabora.tuxy.party";
     };
-  };
 }

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.openvscode-server = {
     enable = true;
     host = "127.0.0.1";
@@ -10,7 +11,9 @@
       cargo
       ccls
       clang
+      gnumake
       libclang
+      opencode
       llvmPackages.libc-full
     ];
   };
