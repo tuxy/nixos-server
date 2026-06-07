@@ -54,6 +54,22 @@
       };
     };
 
+    qbittorrent = {
+      enable = true;
+      vpn.enable = true;
+      torrentingPort = 51234;
+      qui.enable = true;
+      settings = {
+        LegalNotice = { Accepted = true; };
+        Preferences = {
+          WebUI = {
+            Username = "tuxy";
+            Password_PBKDF2 = "@ByteArray()";
+          };
+        };
+      };
+    };
+
     bazarr.enable = true;
     lidarr.enable = true;
     prowlarr.enable = true;

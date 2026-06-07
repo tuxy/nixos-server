@@ -57,6 +57,10 @@ torrent.server01.tuxy.party {
 	reverse_proxy 127.0.0.1:9091
 }
 
+qbittorrent.server01.tuxy.party {
+	reverse_proxy 127.0.0.1:8080
+}
+
 whisparr.server01.tuxy.party {
 	reverse_proxy 127.0.0.1:6969
 }

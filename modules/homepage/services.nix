@@ -49,6 +49,19 @@ in {
           };
         }
         {
+          "qBittorrent" = {
+            icon = "qbittorrent.png";
+            href = "https://qbittorrent.server01.tuxy.party";
+            description = "P2P File transfer software";
+            widget = {
+              type = "qbittorrent";
+              url = "https://qbittorrent.server01.tuxy.party";
+              username = "tuxy";
+              password = "";
+            };
+          };
+        }
+        {
           "Jellyfin" = {
             icon = "jellyfin.png";
             href = "https://jellyfin.server01.tuxy.party";
