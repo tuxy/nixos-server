@@ -2,11 +2,6 @@
 	skip_install_trust
 	acme_dns cloudflare {env.CF_API_TOKEN} 
 	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
-        servers {
-          protocol {
-          experimental_http3 off
-        }
-  }
 }
 
 bazarr.server01.tuxy.party {
@@ -63,7 +58,12 @@ torrent.server01.tuxy.party {
 }
 
 qbittorrent.server01.tuxy.party {
-	reverse_proxy 127.0.0.1:8080
+	reverse_proxy 127.0.0.1:8085 {
+                header_up Host 127.0.0.1:8085
+                header_up X-Forwarded-Host {hostport}
+                header_up -Origin
+                header_up -Referer
+        }
 }
 
 whisparr.server01.tuxy.party {

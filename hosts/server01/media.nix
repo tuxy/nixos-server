@@ -73,14 +73,14 @@
     qbittorrent = {
       enable = true;
       vpn.enable = true;
-      peerPort = 51234;
-      qui.enable = true;
+      peerPort = 49889;
       extraConfig = {
         LegalNotice = {
           Accepted = true;
         };
         Preferences = {
           WebUI = {
+            Adress = "127.0.0.1";
             Username = "tuxy";
             Password_PBKDF2 = "@ByteArray()";
           };
@@ -94,6 +94,6 @@
     whisparr.enable = true;
     radarr.enable = true;
     sonarr.enable = true;
-    jellyseerr.enable = true;
+    seerr.enable = true;
   };
 }

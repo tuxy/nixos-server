@@ -2,8 +2,12 @@
   pkgs,
   config,
   ...
-}: {
-  environment.systemPackages = [pkgs.restic];
+}:
+{
+  environment.systemPackages = [
+    pkgs.restic
+    pkgs.borgbackup
+  ];
   services.restic.backups = {
     server01 = {
       user = "root";
