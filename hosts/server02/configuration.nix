@@ -8,25 +8,22 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../../modules/nextcloud
     ../../modules/caddy-02
-    ../../modules/homepage
-    ../../modules/telemetry
     ../../modules/code
     ./disko-config.nix
+    (modulesPath + "/profiles/zfs.nix")
   ];
 
-  networking.enableIPv6 = false;
-
-  telemetry = {
-    enableGrafana = true;
-    host = "server02.tuxy.party";
+  boot.supportedFilesystems = [ "zfs" ];
+  services.zfs = {
+    autoScrub.enable = true;
   };
+
+  networking.enableIPv6 = false;
 
   age = {
     identityPaths = [ "/root/.ssh/id_rsa" ];
     secrets = {
-      nextcloud-password.file = ../../secrets/nextcloud-password.age;
       password.file = ../../secrets/password.age;
       tailscale-env.file = ../../secrets/tailscale-env.age;
       cloudflare.file = ../../secrets/cloudflare.age;
@@ -35,11 +32,7 @@
 
   system.activationScripts."passwords" = ''
     export SECRET=$(cat ${config.age.secrets.password.path})
-    export NEXTCLOUD_SECRET=$(cat "${config.age.secrets.nextcloud-password.path}")
-    configFile=/etc/homepage-dashboard/services.yaml
-    ${pkgs.gnused}/bin/sed -i "s#proxy_password#$SECRET#" "$configFile"
-    ${pkgs.gnused}/bin/sed -i "s#grafana_password#$SECRET#" "$configFile"
-    ${pkgs.gnused}/bin/sed -i "s#nextcloud_password#$NEXTCLOUD_SECRET#" "$configFile"
+    ${pkgs.gnused}/bin/sed -i "s#proxy_password#$SECRET#" /etc/homepage-dashboard/services.yaml
   '';
 
   hardware.graphics = {

@@ -65,8 +65,21 @@
         rpc-authentication-required = "true";
         rpc-username = "tuxy";
         port-forwarding-enabled = "true";
-        ratio-limit = "5";
+        ratio-limit = 5;
         ratio-limit-enabled = "true";
+
+        speed-limit-down-enabled = "true";
+        speed-limit-down = 5000;
+        speed-limit-up-enabled = "true";
+        speed-limit-up = 500;
+
+        alt-speed-up = 0;
+        alt-speed-down = 0;
+        alt-speed-time-enabled = "true";
+        alt-speed-time-begin = 540;
+        alt-speed-time-end = 1380;
+
+        upload-slots-per-torrent = 6;
       };
     };
 
