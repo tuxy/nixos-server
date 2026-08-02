@@ -60,6 +60,7 @@
       config = mkIf (cfg.datasets != { }) {
         boot.supportedFilesystems = [ "zfs" ];
         boot.zfs.devNodes = mkDefault "/dev/disk/by-id/";
+        boot.zfs.forceImportRoot = false;
         services.zfs.autoScrub.enable = true;
         networking.hostId = builtins.substring 0 8 (
           builtins.hashString "sha256" config.networking.hostName

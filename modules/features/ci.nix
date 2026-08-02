@@ -35,7 +35,6 @@
         enable = true;
         hydraURL = "https://${self.domains.hydra}";
         notificationSender = "hydra@${self.domains.base}";
-        buildUser = "hydra-queue-runner";
       };
     };
 }
