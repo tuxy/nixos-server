@@ -1,53 +1,34 @@
 {
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix-rekey.url = "github:oddlama/agenix-rekey";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixarr.url = "github:rasmus-kirk/nixarr";
-    copyparty.url = "github:9001/copyparty";
-    agenix.url = "github:ryantm/agenix";
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
-  };
-
-  outputs = {
-    self,
-    nixpkgs,
-    copyparty,
-    disko,
-    agenix,
-    nixarr,
-    vscode-server,
-    ...
-  } @ inputs: {
-    # Use this for all other targets
-    # nixos-anywhere --flake .#{server01,server02} --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
-    nixosConfigurations = {
-      server01 = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          copyparty.nixosModules.default
-          nixarr.nixosModules.default
-          agenix.nixosModules.default
-
-          ./hosts/server01/configuration.nix
-          ./hosts/server01/hardware-configuration.nix
-        ];
-      };
-      server02 = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          agenix.nixosModules.default
-          vscode-server.nixosModules.default
-          ./hosts/server02/configuration.nix
-          ./hosts/server02/hardware-configuration.nix
-        ];
-      };
+    nixflix = {
+      url = "github:kiriwalawren/nixflix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    copyparty = {
+      url = "github:9001/copyparty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    gachix = {
+      url = "github:EphraimSiegfried/gachix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hydra = {
+      url = "github:NixOS/hydra";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
