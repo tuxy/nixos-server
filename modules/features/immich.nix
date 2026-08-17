@@ -71,7 +71,8 @@
           port = self.ports.immich;
           mediaLocation = cfg.mediaLocation;
           openFirewall = false;
-          accelerationDevices = if cfg.accelerationDevices != null then cfg.accelerationDevices else [ "/dev/dri" ];
+          accelerationDevices =
+            if cfg.accelerationDevices != null then cfg.accelerationDevices else [ "/dev/dri" ];
           settings = {
             server.externalDomain = "https://${immichDomain}";
           };
@@ -79,7 +80,11 @@
 
         environment.systemPackages = [ pkgs.immich-go ];
 
-        users.users.immich.extraGroups = [ "media" "video" "render" ];
+        users.users.immich.extraGroups = [
+          "media"
+          "video"
+          "render"
+        ];
 
         # Immich album sharing proxy
         services.immich-public-proxy = mkIf cfg.publicProxy.enable {
@@ -94,7 +99,7 @@
           enable = true;
           tunnels = {
             "${cfg.cloudflareTunnel.tunnelId}" = {
-              credentialsFile = config.age.secrets.cloudflared-credentials.path;
+              credentialsFile = config.age.secrets.cloudflare-tunnel.path;
               ingress = {
                 "${cfg.cloudflareTunnel.domain}" = {
                   service = "http://127.0.0.1:${toString cfg.publicProxy.port}";
@@ -109,4 +114,3 @@
       };
     };
 }
-

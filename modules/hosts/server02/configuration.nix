@@ -19,6 +19,7 @@
         self.nixosModules.ci
         self.nixosModules.caddy
         self.nixosModules.openvscode-server
+        self.nixosModules.tailscale
       ];
 
       networking.hostName = "server02";
@@ -31,11 +32,14 @@
       };
 
       age.secrets = {
+        tailscale = {
+          rekeyFile = ../../../secrets/tailscale.age;
+        };
         vscode-token = {
           rekeyFile = ../../../secrets/vscode-token.age;
         };
-        cloudflare = {
-          rekeyFile = ../../../secrets/cloudflare.age;
+        cloudflare-dns = {
+          rekeyFile = ../../../secrets/cloudflare-dns.age;
         };
       };
 
@@ -47,8 +51,11 @@
           ];
           hash = "sha256-HxqTeEVQLID3dwvcBqgkbHupqh4/3n8MD0UXsiPYJ78=";
         };
-        environmentFile = config.age.secrets.cloudflare.path;
-        proxies = map (svc: { subdomain = svc.domain; port = svc.port; }) self.services.server02;
+        environmentFile = config.age.secrets.cloudflare-dns.path;
+        proxies = map (svc: {
+          subdomain = svc.domain;
+          port = svc.port;
+        }) self.services.server02;
       };
 
       zfs = {

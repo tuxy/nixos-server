@@ -4,7 +4,8 @@
   ];
 
   perSystem = { config, pkgs, ... }: {
-    agenix-rekey.nixosConfigurations = config.flake.nixosConfigurations;
+    # agenix-rekey.nixosConfigurations defaults to inputs.self.nixosConfigurations
+    # (which is the correct value), so we don't need to set it explicitly.
 
     # Expose the agenix CLI wrapper as a package and app:
     #   nix run .#agenix -- edit secrets/foo.age

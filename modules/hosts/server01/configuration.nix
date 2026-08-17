@@ -22,25 +22,30 @@
         self.nixosModules.restic
         self.nixosModules.immich
         self.nixosModules.beszel-agent
+        self.nixosModules.tailscale
+        self.nixosModules.nixflix
       ];
 
       networking.hostName = "server01";
 
       age.secrets = {
-        radicale-passwd = {
-          rekeyFile = ../../../secrets/radicale-passwd.age;
+        tailscale = {
+          rekeyFile = ../../../secrets/tailscale.age;
+        };
+        radicale = {
+          rekeyFile = ../../../secrets/radicale.age;
         };
         restic-env = {
           rekeyFile = ../../../secrets/restic-env.age;
         };
-        cloudflared-credentials = {
-          rekeyFile = ../../../secrets/cloudflared-credentials.age;
-        };
         beszel-agent-env = {
           rekeyFile = ../../../secrets/beszel-agent-env.age;
         };
-        cloudflare = {
-          rekeyFile = ../../../secrets/cloudflare.age;
+        cloudflare-dns = {
+          rekeyFile = ../../../secrets/cloudflare-dns.age;
+        };
+        cloudflare-tunnel = {
+          rekeyFile = ../../../secrets/cloudflare-tunnel.age;
         };
       };
 
@@ -59,8 +64,11 @@
           ];
           hash = "sha256-HxqTeEVQLID3dwvcBqgkbHupqh4/3n8MD0UXsiPYJ78=";
         };
-        environmentFile = config.age.secrets.cloudflare.path;
-        proxies = map (svc: { subdomain = svc.domain; port = svc.port; }) self.services.server01;
+        environmentFile = config.age.secrets.cloudflare-dns.path;
+        proxies = map (svc: {
+          subdomain = svc.domain;
+          port = svc.port;
+        }) self.services.server01;
       };
 
       immich = {
@@ -70,8 +78,8 @@
         };
         cloudflareTunnel = {
           enable = true;
-          tunnelId = "00000000-0000-0000-0000-000000000000";
-          domain = "photos.${config.networking.hostName}.${self.domains.base}";
+          tunnelId = "f18432ba-750b-4edc-ad39-d510f3aa2663";
+          domain = "immich.${config.networking.hostName}.${self.domains.base}";
         };
       };
 

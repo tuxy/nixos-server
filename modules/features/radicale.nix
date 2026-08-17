@@ -5,7 +5,12 @@
 }:
 {
   flake.nixosModules.radicale =
-    { pkgs, config, self, ... }:
+    {
+      pkgs,
+      config,
+      self,
+      ...
+    }:
     {
       services.radicale = {
         enable = true;
@@ -15,7 +20,8 @@
           };
           auth = {
             type = "htpasswd";
-            htpasswd_filename = config.age.secrets.radicale-passwd.path;
+            htpasswd_filename = config.age.secrets.radicale.path;
+            htpasswd_encryption = "bcrypt";
           };
           storage = {
             filesystem_folder = "/data/radicale";
